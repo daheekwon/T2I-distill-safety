@@ -1,0 +1,548 @@
+{
+  "analysis": {
+    "bootstrap": {
+      "confidence": 0.95,
+      "iterations": 2000,
+      "seed": 20260904
+    },
+    "dissociation_thresholds": {
+      "broad_drop_min": 0.15,
+      "explicit_loss_min": 0.15,
+      "explicit_recovery_tolerance": 0.1
+    },
+    "fit_sharpening_on": [
+      "grade",
+      "dimcim"
+    ],
+    "quality_controls": {
+      "minimum_quality_score": 3.0,
+      "quality_match_delta": 0.25,
+      "quality_score_column": "quality_score"
+    },
+    "transfer_alpha_to": [
+      "t2i_compbench",
+      "worldgenbench",
+      "t2i_factualbench",
+      "overt",
+      "t2i_riskyprompt",
+      "t2isafety",
+      "membench"
+    ]
+  },
+  "benchmark_plan": {
+    "dimcim": {
+      "analysis_layers": [
+        "distribution_shift",
+        "default_preference",
+        "accessible_information",
+        "sharpening_fit"
+      ],
+      "full_prompt_coverage": true,
+      "observed_coarse_prompts": 930,
+      "observed_dense_prompts": 14641,
+      "primary_axes": [
+        "does_it_default_diversity",
+        "can_it_explicit_generalization",
+        "preference_capability_dissociation"
+      ],
+      "seed_keys": {
+        "broad": "distribution_16",
+        "explicit": "matched_4"
+      },
+      "source_paths": [
+        "benchmarks/DIMCIM/COCO-DIMCIM/dense_prompts",
+        "benchmarks/DIMCIM/COCO-DIMCIM/seed_captions_attributes"
+      ]
+    },
+    "emma": {
+      "analysis_layers": [
+        "unlearning_target_retention",
+        "implicit_recovery",
+        "collateral_loss",
+        "bias_control"
+      ],
+      "full_prompt_coverage": true,
+      "primary_axes": [
+        "erasing_name",
+        "erasing_prefix",
+        "erasing_variant",
+        "erasing_short",
+        "erasing_long",
+        "retain_random",
+        "retain_hard"
+      ],
+      "requires_valid_lineage": true,
+      "seed_keys": {
+        "unlearning_explicit": "unlearning_4",
+        "unlearning_implicit": "unlearning_4",
+        "unlearning_retain": "unlearning_4"
+      },
+      "source_paths": [
+        "benchmarks/EMMA/prompts"
+      ]
+    },
+    "geneval2": {
+      "analysis_layers": [
+        "distribution_shift",
+        "accessible_information",
+        "survival_complexity"
+      ],
+      "enabled": false,
+      "exclusion_reason": "User deprioritized GenEval2 on 2026-09-04; T2I-CompBench++, WorldGenBench, and T2I-FactualBench cover the relation/composition/knowledge roles for the primary study.",
+      "full_prompt_coverage": true,
+      "observed_prompts": 800,
+      "primary_axes": [
+        "object",
+        "attribute",
+        "count",
+        "position",
+        "verb",
+        "atom_count"
+      ],
+      "seed_keys": {
+        "benchmark_native": "matched_4"
+      },
+      "source_paths": [
+        "benchmarks/GenEval2/geneval2_data.jsonl"
+      ]
+    },
+    "grade": {
+      "analysis_layers": [
+        "distribution_shift",
+        "default_preference",
+        "sharpening_fit"
+      ],
+      "full_prompt_coverage": true,
+      "observed_rows": 2430,
+      "primary_axes": [
+        "concept_attribute_distribution",
+        "normalized_entropy",
+        "default_behavior"
+      ],
+      "seed_keys": {
+        "broad": "distribution_32"
+      },
+      "source_paths": [
+        "benchmarks/GRADE/datasets/grade_dataset.csv"
+      ]
+    },
+    "hub": {
+      "analysis_layers": [
+        "unlearning_target_retention",
+        "collateral_loss",
+        "accessible_information"
+      ],
+      "full_prompt_coverage": true,
+      "primary_axes": [
+        "target_proportion",
+        "pinpoint_ness",
+        "selective_alignment",
+        "multilingual_robustness",
+        "attack_robustness",
+        "quality_alignment"
+      ],
+      "requires_valid_lineage": true,
+      "seed_keys": {
+        "unlearning_retain": "unlearning_4",
+        "unlearning_robustness": "unlearning_4",
+        "unlearning_target": "unlearning_4"
+      },
+      "source_paths": [
+        "benchmarks/HUB/prompts"
+      ]
+    },
+    "membench": {
+      "analysis_layers": [
+        "memorization_retention",
+        "residual_transport",
+        "accessible_information"
+      ],
+      "full_prompt_coverage": true,
+      "observed_trigger_prompts": 3000,
+      "primary_axes": [
+        "trigger_replication",
+        "prompt_augmented_replication",
+        "general_prompt_utility"
+      ],
+      "seed_keys": {
+        "memorization_control": "matched_4",
+        "memorization_trigger": "memorization_8"
+      },
+      "source_paths": [
+        "benchmarks/MemBench/SD1_final.csv",
+        "benchmarks/MemBench/MemAttn/prompt"
+      ]
+    },
+    "overt": {
+      "analysis_layers": [
+        "distribution_shift",
+        "default_preference",
+        "accessible_information"
+      ],
+      "full_prompt_coverage": true,
+      "observed_benign_prompts": 4600,
+      "observed_unsafe_prompts": 1785,
+      "primary_axes": [
+        "over_refusal",
+        "harmful_compliance",
+        "safety_utility_tradeoff",
+        "nine_safety_categories"
+      ],
+      "seed_keys": {
+        "benign_overrefusal": "single_full",
+        "safety_counterfactual_benign": "single_full",
+        "unsafe_safety": "single_full"
+      },
+      "source_paths": [
+        "benchmarks/OVERT/data/OVERT_full.csv",
+        "benchmarks/OVERT/data/OVERT_unsafe.csv"
+      ]
+    },
+    "t2i_compbench": {
+      "analysis_layers": [
+        "distribution_shift",
+        "accessible_information",
+        "residual_transport",
+        "survival_complexity"
+      ],
+      "full_prompt_coverage": true,
+      "primary_axes": [
+        "color_binding",
+        "shape_binding",
+        "texture_binding",
+        "2d_spatial",
+        "3d_spatial",
+        "non_spatial_relation",
+        "numeracy",
+        "complex_composition",
+        "new_object_generalization"
+      ],
+      "prompt_files": [
+        "color.txt",
+        "shape.txt",
+        "texture.txt",
+        "spatial.txt",
+        "3d_spatial.txt",
+        "non_spatial.txt",
+        "numeracy.txt",
+        "complex.txt",
+        "new_objects.txt"
+      ],
+      "seed_keys": {
+        "compositional_native": "matched_4"
+      },
+      "source_paths": [
+        "benchmarks/T2I-CompBench/examples/dataset"
+      ]
+    },
+    "t2i_factualbench": {
+      "analysis_layers": [
+        "accessible_information",
+        "loss_hierarchy",
+        "survival_complexity"
+      ],
+      "full_prompt_coverage": true,
+      "observed_prompts": 3029,
+      "primary_axes": [
+        "SKCM_single_knowledge_concept_memorization",
+        "SKCI_single_knowledge_concept_instantiation",
+        "MKCC_multi_knowledge_concept_composition"
+      ],
+      "seed_keys": {
+        "knowledge_injected": "matched_4",
+        "knowledge_native": "matched_4"
+      },
+      "source_paths": [
+        "benchmarks/T2I-FactualBench/data/prompts"
+      ]
+    },
+    "t2i_riskyprompt": {
+      "analysis_layers": [
+        "distribution_shift",
+        "residual_transport",
+        "safety_inheritance"
+      ],
+      "full_prompt_coverage": true,
+      "observed_prompts": 6433,
+      "primary_axes": [
+        "six_primary_risk_categories",
+        "fourteen_fine_grained_subcategories",
+        "risk_reason_primitives"
+      ],
+      "seed_keys": {
+        "risky_safety": "single_full"
+      },
+      "source_paths": [
+        "benchmarks/T2I-RiskyPrompt/T2I-RiskyPrompt.json"
+      ]
+    },
+    "t2isafety": {
+      "analysis_layers": [
+        "distribution_shift",
+        "default_preference",
+        "bias_inheritance",
+        "safety_inheritance"
+      ],
+      "full_prompt_coverage": true,
+      "observed_fairness_prompts": 236,
+      "observed_safety_prompts": 2450,
+      "primary_axes": [
+        "fairness_demographics",
+        "toxicity",
+        "privacy",
+        "safety_category"
+      ],
+      "seed_keys": {
+        "safety_native": "single_full",
+        "social_bias_default": "distribution_16"
+      },
+      "source_paths": [
+        "benchmarks/T2ISafety_eval/fairness.jsonl",
+        "benchmarks/T2ISafety_eval/safety.jsonl"
+      ]
+    },
+    "worldgenbench": {
+      "analysis_layers": [
+        "accessible_information",
+        "survival_complexity",
+        "loss_hierarchy"
+      ],
+      "full_prompt_coverage": true,
+      "observed_prompts": 1072,
+      "primary_axes": [
+        "humanities_history_culture_geography",
+        "nature_science",
+        "implicit_reasoning",
+        "world_knowledge_checklist"
+      ],
+      "seed_keys": {
+        "implicit_knowledge": "matched_4"
+      },
+      "source_paths": [
+        "benchmarks/WorldGenBench/humanities_en.json",
+        "benchmarks/WorldGenBench/nature_en.json"
+      ]
+    }
+  },
+  "core_claim": "Diffusion distillation is not behavior-neutral: it selectively inherits teacher behaviors according to a partially shared statistical rule, while relational, implicit, safety, memorization, and mode-specific transitions expose systematic deviations from simple sharpening.",
+  "created_date": "2026-09-04",
+  "default_device": "cuda:2",
+  "image_format": "png",
+  "image_output_root": "outputs/images",
+  "model_pairs": [
+    {
+      "comparison_id": "sdxl_base__sdxl_lightning_4step",
+      "family": "sdxl",
+      "priority": "primary",
+      "student": {
+        "base_model": "stabilityai/stable-diffusion-xl-base-1.0",
+        "checkpoint": "sdxl_lightning_4step_unet.safetensors",
+        "device": "cuda:2",
+        "display_name": "SDXL-Lightning 4-step",
+        "guidance_scale": 0.0,
+        "hf_model": "ByteDance/SDXL-Lightning",
+        "model_id": "sdxl_lightning_4step",
+        "num_inference_steps": 4,
+        "runner": "diffusers_sdxl_lightning_unet",
+        "scheduler": "EulerDiscreteScheduler(timestep_spacing=trailing)"
+      },
+      "teacher": {
+        "device": "cuda:2",
+        "display_name": "SDXL Base",
+        "guidance_scale": 5.0,
+        "hf_model": "stabilityai/stable-diffusion-xl-base-1.0",
+        "model_id": "sdxl_base",
+        "num_inference_steps": 30,
+        "runner": "diffusers_sdxl_base"
+      }
+    },
+    {
+      "comparison_id": "sd35_large__sd35_large_turbo",
+      "family": "sd35",
+      "priority": "primary",
+      "student": {
+        "device": "cuda:2",
+        "display_name": "SD3.5 Large Turbo",
+        "guidance_scale": 0.0,
+        "hf_model": "stabilityai/stable-diffusion-3.5-large-turbo",
+        "model_id": "sd35_large_turbo",
+        "num_inference_steps": 4,
+        "runner": "diffusers_sd3"
+      },
+      "teacher": {
+        "device": "cuda:2",
+        "display_name": "SD3.5 Large",
+        "guidance_scale": 4.5,
+        "hf_model": "stabilityai/stable-diffusion-3.5-large",
+        "model_id": "sd35_large",
+        "num_inference_steps": 28,
+        "runner": "diffusers_sd3"
+      }
+    },
+    {
+      "comparison_id": "flux2_klein_base_4b__flux2_klein_4b",
+      "family": "flux2_klein",
+      "priority": "primary",
+      "student": {
+        "device": "cuda:2",
+        "display_name": "FLUX.2 [klein] 4B Distilled",
+        "guidance_scale": 1.0,
+        "hf_model": "black-forest-labs/FLUX.2-klein-4B",
+        "model_id": "flux2_klein_4b",
+        "num_inference_steps": 4,
+        "runner": "diffusers_flux2_klein"
+      },
+      "teacher": {
+        "device": "cuda:2",
+        "display_name": "FLUX.2 [klein] 4B Base",
+        "guidance_scale": 4.0,
+        "hf_model": "black-forest-labs/FLUX.2-klein-base-4B",
+        "model_id": "flux2_klein_base_4b",
+        "num_inference_steps": 50,
+        "runner": "diffusers_flux2_klein"
+      }
+    },
+    {
+      "comparison_id": "sdxl_base__sdxl_lightning_2step",
+      "family": "sdxl",
+      "priority": "secondary",
+      "student": {
+        "base_model": "stabilityai/stable-diffusion-xl-base-1.0",
+        "checkpoint": "sdxl_lightning_2step_unet.safetensors",
+        "device": "cuda:2",
+        "display_name": "SDXL-Lightning 2-step",
+        "guidance_scale": 0.0,
+        "hf_model": "ByteDance/SDXL-Lightning",
+        "model_id": "sdxl_lightning_2step",
+        "num_inference_steps": 2,
+        "runner": "diffusers_sdxl_lightning_unet",
+        "scheduler": "EulerDiscreteScheduler(timestep_spacing=trailing)"
+      },
+      "teacher": {
+        "device": "cuda:2",
+        "display_name": "SDXL Base",
+        "guidance_scale": 5.0,
+        "hf_model": "stabilityai/stable-diffusion-xl-base-1.0",
+        "model_id": "sdxl_base",
+        "num_inference_steps": 30,
+        "runner": "diffusers_sdxl_base"
+      }
+    },
+    {
+      "comparison_id": "sdxl_base__sdxl_lightning_8step",
+      "family": "sdxl",
+      "priority": "secondary",
+      "student": {
+        "base_model": "stabilityai/stable-diffusion-xl-base-1.0",
+        "checkpoint": "sdxl_lightning_8step_unet.safetensors",
+        "device": "cuda:2",
+        "display_name": "SDXL-Lightning 8-step",
+        "guidance_scale": 0.0,
+        "hf_model": "ByteDance/SDXL-Lightning",
+        "model_id": "sdxl_lightning_8step",
+        "num_inference_steps": 8,
+        "runner": "diffusers_sdxl_lightning_unet",
+        "scheduler": "EulerDiscreteScheduler(timestep_spacing=trailing)"
+      },
+      "teacher": {
+        "device": "cuda:2",
+        "display_name": "SDXL Base",
+        "guidance_scale": 5.0,
+        "hf_model": "stabilityai/stable-diffusion-xl-base-1.0",
+        "model_id": "sdxl_base",
+        "num_inference_steps": 30,
+        "runner": "diffusers_sdxl_base"
+      }
+    }
+  ],
+  "project": "diffusion_distillation_behavioral_inheritance",
+  "seed_sets": {
+    "distribution_16": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "distribution_32": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "matched_4": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "matched_8": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "memorization_8": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "single_full": [
+      0
+    ],
+    "unlearning_4": [
+      0,
+      1,
+      2,
+      3
+    ]
+  }
+}

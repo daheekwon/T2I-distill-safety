@@ -1,0 +1,52 @@
+# Python/cache artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local environments and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.secret
+*token*
+*credentials*
+
+# Generated experiment data and outputs
+data/
+outputs/
+results/
+
+# Downloaded benchmark datasets/submodules
+benchmarks/
+
+# Application/private drafts
+docs/application_draft/
+scripts/build_application_docx.py
+
+# Large model and generated media artifacts
+*.ckpt
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.onnx
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.mp4
+*.zip
+*.tar
+*.tar.gz
+
+# Scratch files
+0
+2
+6
