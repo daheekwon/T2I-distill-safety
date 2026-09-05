@@ -156,4 +156,6 @@ python scripts/run_post_label_pipeline.py \
 
 For analysis only, use `python scripts/analyze_labels.py --labels data/labels/filled_labels.csv --model-scope primary`. Core analysis outputs include distribution shift, paired outcome tests, sharpening fits/transfers, residual transport with uncertainty, preference/capability dissociation, survival features, frequency-controlled survival regression, and quality balance tables. To rebuild only the claim-level interpretation report from an existing result directory, use `python scripts/build_claim_report.py --result-dir results/post_label_pipeline`.
 
-The main Korean protocol is in `docs/research_protocol_ko.md`; benchmark/axis prompt design is in `docs/benchmark_prompt_design_ko.md`.
+## Public Snapshot Scope
+
+This public repository contains the reusable experiment code, configuration, and command-line pipeline. Generated data, benchmark downloads, results, private notes, application drafts, and local validation artifacts are intentionally excluded.

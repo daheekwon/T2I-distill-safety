@@ -25,10 +25,58 @@ results/
 # Downloaded benchmark datasets/submodules
 benchmarks/
 
-# Application/private drafts
+# Private notes, drafts, and local validation
 docs/
-docs/application_draft/
-scripts/build_application_docx.py
+tests/
+
+# Keep only public, reproducible CLI scripts
+scripts/*
+!scripts/analyze_labels.py
+!scripts/audit_design_matrix.py
+!scripts/audit_evaluator_plan.py
+!scripts/audit_experiment_state.py
+!scripts/audit_label_quality.py
+!scripts/audit_rq_readiness.py
+!scripts/audit_statistical_power.py
+!scripts/build_claim_report.py
+!scripts/build_evaluator_plan.py
+!scripts/build_generation_manifest.py
+!scripts/build_label_template.py
+!scripts/build_preflight_package.py
+!scripts/build_prompt_bank.py
+!scripts/check_model_backends.py
+!scripts/export_evaluator_batch.py
+!scripts/generate_diffusers.py
+!scripts/merge_label_updates.py
+!scripts/plan_evaluator_batches.py
+!scripts/record_benchmark_versions.py
+!scripts/run_generation_queue.py
+!scripts/run_post_label_pipeline.py
+!scripts/split_manifest.py
+!scripts/summarize_generation_progress.py
+!scripts/summarize_prompt_bank.py
+!scripts/validate_label_updates.py
+!scripts/wait_for_gpu_and_generate.py
+
+# Keep only source modules needed by the public CLI path
+src/t2i_distill/*
+!src/t2i_distill/__init__.py
+!src/t2i_distill/analysis.py
+!src/t2i_distill/config.py
+!src/t2i_distill/design_audit.py
+!src/t2i_distill/evaluation.py
+!src/t2i_distill/evaluator_audit.py
+!src/t2i_distill/execution.py
+!src/t2i_distill/generation_queue.py
+!src/t2i_distill/io.py
+!src/t2i_distill/label_quality.py
+!src/t2i_distill/manifest.py
+!src/t2i_distill/power.py
+!src/t2i_distill/preflight.py
+!src/t2i_distill/progress.py
+!src/t2i_distill/prompt_bank.py
+!src/t2i_distill/readiness.py
+!src/t2i_distill/reporting.py
 
 # Large model and generated media artifacts
 *.ckpt
