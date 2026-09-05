@@ -26,6 +26,7 @@ results/
 benchmarks/
 
 # Application/private drafts
+docs/
 docs/application_draft/
 scripts/build_application_docx.py
 
